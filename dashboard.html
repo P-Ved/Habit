@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - HabitHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="HabitHub Logo">
+                <h1>HabitHub</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-chart-line"></i> Statistics</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-stats">
+                <h3>Your Progress</h3>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="total-habits">0</span>
+                        <span class="stat-label">Total Habits</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="current-streak">0</span>
+                        <span class="stat-label">Current Streak</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="completion-rate">0%</span>
+                        <span class="stat-label">Completion Rate</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="total-time">0h</span>
+                        <span class="stat-label">Total Time</span>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile">
+                <img src="images/user-avatar.jpg" alt="User Avatar">
+                <div class="user-info">
+                    <h3 id="user-name">John Doe</h3>
+                    <p>Premium Member</p>
+                </div>
+                <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div class="welcome-message">
+                    <h2>Welcome back, <span id="welcome-name">John</span>!</h2>
+                    <p id="current-date">Monday, April 14, 2025</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search habits...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Active Habits</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>12</h3>
+                        <p>Current Streak</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>8</h3>
+                        <p>Achievements</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>85%</h3>
+                        <p>Completion Rate</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="habits-section">
+                <div class="section-header">
+                    <h2>Your Habits</h2>
+                    <div class="view-toggle">
+                        <button class="toggle-btn active" data-view="weekly">Weekly</button>
+                        <button class="toggle-btn" data-view="monthly">Monthly</button>
+                    </div>
+                    <button class="add-habit-btn" id="add-habit-btn">
+                        <i class="fas fa-plus"></i> New Habit
+                    </button>
+                </div>
+
+                <div class="habits-container" id="habits-container">
+                    <!-- Habit cards will be dynamically added here -->
+                    <div class="habit-card">
+                        <div class="habit-header">
+                            <div class="habit-icon" style="background-color: #4CAF50;">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <div class="habit-info">
+                                <h3>Morning Exercise</h3>
+                                <p>30 minutes daily workout</p>
+                            </div>
+                            <div class="habit-actions">
+                                <button class="habit-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </div>
+                        <div class="habit-progress">
+                            <div class="progress-header">
+                                <span>Progress: 5/7 days</span>
+                                <span>Streak: 5 days</span>
+                            </div>
+                            <div class="weekly-tracker">
+                                <div class="day completed">
+                                    <span class="day-label">Mon</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Tue</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Wed</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Thu</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Fri</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day">
+                                    <span class="day-label">Sat</span>
+                                    <span class="day-status"><i class="fas fa-circle"></i></span>
+                                </div>
+                                <div class="day">
+                                    <span class="day-label">Sun</span>
+                                    <span class="day-status"><i class="fas fa-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="habit-card">
+                        <div class="habit-header">
+                            <div class="habit-icon" style="background-color: #2196F3;">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="habit-info">
+                                <h3>Read a Book</h3>
+                                <p>20 pages daily</p>
+                            </div>
+                            <div class="habit-actions">
+                                <button class="habit-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </div>
+                        <div class="habit-progress">
+                            <div class="progress-header">
+                                <span>Progress: 4/7 days</span>
+                                <span>Streak: 4 days</span>
+                            </div>
+                            <div class="weekly-tracker">
+                                <div class="day completed">
+                                    <span class="day-label">Mon</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Tue</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Wed</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Thu</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day">
+                                    <span class="day-label">Fri</span>
+                                    <span class="day-status"><i class="fas fa-circle"></i></span>
+                                </div>
+                                <div class="day">
+                                    <span class="day-label">Sat</span>
+                                    <span class="day-status"><i class="fas fa-circle"></i></span>
+                                </div>
+                                <div class="day">
+                                    <span class="day-label">Sun</span>
+                                    <span class="day-status"><i class="fas fa-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="habit-card">
+                        <div class="habit-header">
+                            <div class="habit-icon" style="background-color: #FF9800;">
+                                <i class="fas fa-glass-water"></i>
+                            </div>
+                            <div class="habit-info">
+                                <h3>Drink Water</h3>
+                                <p>8 glasses daily</p>
+                            </div>
+                            <div class="habit-actions">
+                                <button class="habit-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </div>
+                        <div class="habit-progress">
+                            <div class="progress-header">
+                                <span>Progress: 7/7 days</span>
+                                <span>Streak: 14 days</span>
+                            </div>
+                            <div class="weekly-tracker">
+                                <div class="day completed">
+                                    <span class="day-label">Mon</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Tue</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Wed</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Thu</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Fri</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Sat</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="day completed">
+                                    <span class="day-label">Sun</span>
+                                    <span class="day-status"><i class="fas fa-check"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="achievements-section">
+                <div class="section-header">
+                    <h2>Recent Achievements</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="achievements-container">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h3>7-Day Streak</h3>
+                            <p>Completed a habit for 7 consecutive days</p>
+                        </div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Habit Master</h3>
+                            <p>Completed 3 habits in a single day</p>
+                        </div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Perfect Week</h3>
+                            <p>Completed all habits for an entire week</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Habit Modal -->
+    <div class="modal" id="add-habit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Habit</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="add-habit-form">
+                <div class="form-group">
+                    <label for="habit-name">Habit Name</label>
+                    <input type="text" id="habit-name" name="habit-name" placeholder="e.g., Morning Exercise" required>
+                </div>
+                <div class="form-group">
+                    <label for="habit-description">Description (Optional)</label>
+                    <input type="text" id="habit-description" name="habit-description" placeholder="e.g., 30 minutes daily workout">
+                </div>
+                <div class="form-group">
+                    <label for="habit-icon">Icon</label>
+                    <div class="icon-selector">
+                        <div class="icon-option selected" data-icon="fas fa-running">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fas fa-book">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fas fa-glass-water">
+                            <i class="fas fa-glass-water"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fas fa-meditation">
+                            <i class="fas fa-meditation"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fas fa-bed">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fas fa-apple-alt">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fas fa-code">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fas fa-guitar">
+                            <i class="fas fa-guitar"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="habit-color">Color</label>
+                    <div class="color-selector">
+                        <div class="color-option selected" style="background-color: #4CAF50;" data-color="#4CAF50"></div>
+                        <div class="color-option" style="background-color: #2196F3;" data-color="#2196F3"></div>
+                        <div class="color-option" style="background-color: #FF9800;" data-color="#FF9800"></div>
+                        <div class="color-option" style="background-color: #E91E63;" data-color="#E91E63"></div>
+                        <div class="color-option" style="background-color: #9C27B0;" data-color="#9C27B0"></div>
+                        <div class="color-option" style="background-color: #795548;" data-color="#795548"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Tracking Period</label>
+                    <div class="tracking-toggle">
+                        <button type="button" class="toggle-btn active" data-tracking="weekly">Weekly</button>
+                        <button type="button" class="toggle-btn" data-tracking="monthly">Monthly</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Frequency</label>
+                    <div class="frequency-selector">
+                        <div class="day-selector">
+                            <input type="checkbox" id="day-mon" name="frequency" value="mon" checked>
+                            <label for="day-mon">Mon</label>
+                        </div>
+                        <div class="day-selector">
+                            <input type="checkbox" id="day-tue" name="frequency" value="tue" checked>
+                            <label for="day-tue">Tue</label>
+                        </div>
+                        <div class="day-selector">
+                            <input type="checkbox" id="day-wed" name="frequency" value="wed" checked>
+                            <label for="day-wed">Wed</label>
+                        </div>
+                        <div class="day-selector">
+                            <input type="checkbox" id="day-thu" name="frequency" value="thu" checked>
+                            <label for="day-thu">Thu</label>
+                        </div>
+                        <div class="day-selector">
+                            <input type="checkbox" id="day-fri" name="frequency" value="fri" checked>
+                            <label for="day-fri">Fri</label>
+                        </div>
+                        <div class="day-selector">
+                            <input type="checkbox" id="day-sat" name="frequency" value="sat">
+                            <label for="day-sat">Sat</label>
+                        </div>
+                        <div class="day-selector">
+                            <input type="checkbox" id="day-sun" name="frequency" value="sun">
+                            <label for="day-sun">Sun</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reminder">Reminder (Optional)</label>
+                    <input type="time" id="reminder" name="reminder">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn cancel-btn">Cancel</button>
+                    <button type="submit" class="btn create-btn">Create Habit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Function to load habits from localStorage
+        async function loadHabits() {
+            try {
+                const response = await fetch('get_habits.php');
+                const result = await response.json();
+                
+                if (result.success) {
+                    const habits = result.habits;
+                    const container = document.getElementById('habits-container');
+                    container.innerHTML = '';
+
+                    habits.forEach(habit => {
+                        const habitCard = createHabitCard(habit);
+                        container.appendChild(habitCard);
+                    });
+
+                    updateStats(habits);
+                    updateSidebarStats(habits);
+                }
+            } catch (error) {
+                console.error('Error loading habits:', error);
+            }
+        }
+
+        // Function to create a habit card
+        function createHabitCard(habit) {
+            const card = document.createElement('div');
+            card.className = 'habit-card';
+            card.innerHTML = `
+                <div class="habit-header">
+                    <div class="habit-info">
+                        <h3>${habit.habit_name}</h3>
+                        <p>${habit.repeat_type} - ${habit.days.join(', ')}</p>
+                    </div>
+                </div>
+                <div class="habit-progress">
+                    <div class="weekly-tracker">
+                        ${createDayTrackers(habit.days)}
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function createDayTrackers(days) {
+            const dayNames = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            return dayNames.map(day => `
+                <div class="day ${days.includes(day) ? 'active' : ''}">
+                    <span class="day-label">${day.charAt(0).toUpperCase() + day.slice(1)}</span>
+                    <span class="day-status">
+                        <i class="fas ${days.includes(day) ? 'fa-circle' : 'fa-times'}"></i>
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        // Function to add a new habit
+        function addHabit(habitData) {
+            const habits = JSON.parse(localStorage.getItem('habits')) || [];
+            const newHabit = {
+                id: Date.now().toString(),
+                name: habitData.name,
+                description: habitData.description,
+                icon: habitData.icon,
+                color: habitData.color,
+                completed: false,
+                created_at: new Date().toISOString()
+            };
+            
+            habits.push(newHabit);
+            localStorage.setItem('habits', JSON.stringify(habits));
+            loadHabits();
+        }
+
+        // Function to toggle habit status
+        function toggleHabitStatus(habitId, completed) {
+            const habits = JSON.parse(localStorage.getItem('habits')) || [];
+            const habitIndex = habits.findIndex(h => h.id === habitId);
+            
+            if (habitIndex !== -1) {
+                habits[habitIndex].completed = completed;
+                localStorage.setItem('habits', JSON.stringify(habits));
+                loadHabits();
+            }
+        }
+
+        // Function to delete a habit
+        function deleteHabit(habitId) {
+            const habits = JSON.parse(localStorage.getItem('habits')) || [];
+            const filteredHabits = habits.filter(h => h.id !== habitId);
+            localStorage.setItem('habits', JSON.stringify(filteredHabits));
+            loadHabits();
+        }
+
+        // Function to update dashboard stats
+        function updateStats(habits) {
+            const totalHabits = habits.length;
+            const completedHabits = habits.filter(h => h.completed).length;
+            const completionRate = totalHabits > 0 ? Math.round((completedHabits / totalHabits) * 100) : 0;
+
+            // Update stats cards
+            document.querySelector('.stat-card:nth-child(1) h3').textContent = totalHabits;
+            document.querySelector('.stat-card:nth-child(2) h3').textContent = '0'; // Streak can be implemented later
+            document.querySelector('.stat-card:nth-child(3) h3').textContent = '0'; // Achievements can be implemented later
+            document.querySelector('.stat-card:nth-child(4) h3').textContent = `${completionRate}%`;
+        }
+
+        // Function to update sidebar statistics
+        function updateSidebarStats(habits) {
+            const totalHabits = habits.length;
+            const completedHabits = habits.filter(h => h.completed).length;
+            const completionRate = totalHabits > 0 ? Math.round((completedHabits / totalHabits) * 100) : 0;
+            
+            // Calculate current streak
+            let currentStreak = 0;
+            const today = new Date();
+            const lastWeek = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+            
+            // Calculate total time spent (assuming 30 minutes per habit)
+            const totalTime = totalHabits * 30; // in minutes
+            
+            // Update sidebar stats
+            document.getElementById('total-habits').textContent = totalHabits;
+            document.getElementById('current-streak').textContent = currentStreak;
+            document.getElementById('completion-rate').textContent = `${completionRate}%`;
+            document.getElementById('total-time').textContent = `${Math.floor(totalTime / 60)}h`;
+        }
+
+        // Form handling
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHabits();
+
+            // Handle form submission
+            const addHabitForm = document.getElementById('add-habit-form');
+            const modal = document.getElementById('add-habit-modal');
+            const addHabitBtn = document.getElementById('add-habit-btn');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const cancelBtn = document.querySelector('.cancel-btn');
+
+            // Open modal
+            addHabitBtn.addEventListener('click', () => {
+                modal.style.display = 'block';
+            });
+
+            // Close modal
+            closeModalBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            cancelBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Update the form submission handler
+            addHabitForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Get selected days
+                const selectedDays = [];
+                document.querySelectorAll('input[name="frequency"]:checked').forEach(checkbox => {
+                    selectedDays.push(checkbox.value);
+                });
+                
+                const formData = {
+                    habitName: document.getElementById('habit-name').value,
+                    repeat: document.querySelector('.tracking-toggle .toggle-btn.active').dataset.tracking,
+                    days: selectedDays
+                };
+
+                try {
+                    const response = await fetch('add_habit.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        loadHabits();
+                        modal.style.display = 'none';
+                        addHabitForm.reset();
+                    } else {
+                        alert('Error adding habit: ' + result.message);
+                    }
+                } catch (error) {
+                    alert('Error adding habit: ' + error.message);
+                }
+            });
+
+            // Handle icon selection
+            document.querySelectorAll('.icon-option').forEach(icon => {
+                icon.addEventListener('click', () => {
+                    document.querySelectorAll('.icon-option').forEach(i => i.classList.remove('selected'));
+                    icon.classList.add('selected');
+                });
+            });
+
+            // Handle color selection
+            document.querySelectorAll('.color-option').forEach(color => {
+                color.addEventListener('click', () => {
+                    document.querySelectorAll('.color-option').forEach(c => c.classList.remove('selected'));
+                    color.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
